@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <style>
+      .tooltip {
+        display: none;
+        border: 1px solid black;
+        position: absolute;
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img-container">
+      <svg viewBox="0 0 1209 1702" height="100%" width="100%" version="1.1" id="svg4160">
+        <image
+        width="1209"
+        height="1702"
+        preserveAspectRatio="none"
+        xlink:href="./ymcalendar.jpg"/>
+        <rect x="200" y="350" width="100" height="100" fill-opacity="0.5" data-target="song01"/>
+      </svg>
+      <div class="tooltip" id="song01">Плюшевый мишутка</div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Array.prototype.slice.call(document.getElementsByTagName("rect")).forEach(function(element, a, b) {
+          var id = element.dataset.target;
+          var tooltip = document.getElementById(id);
+          element.addEventListener("mouseover", function(event) {
+            console.log('over', event.target, event.relatedTarget)
+            tooltip.style.display = "inline-block";
+          });
+          element.addEventListener("mousemove", function(event) {
+            console.log('move')
+            tooltip.style.left = event.clientX+5;
+            tooltip.style.top = event.clientY+5;
+          });
+          element.addEventListener("mouseout", function(event) {
+            console.log('leave', event.target, event.relatedTarget)
+            tooltip.style.display = "none";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
